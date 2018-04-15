@@ -1,6 +1,7 @@
 # 更好地使用 ViewController
 ## 前言
 viewController 是 iOS 使用的基本元素之一, 是 MVC 中重要的一环, 在代码的编写中, viewController 经常变得很臃肿, 这是因为我们经常让 viewController 做一些本不应该他做的事情, 比如 viewController 的 View 的较为复杂子视图的布局, 属性的修改, 一些子视图的代码逻辑等等.
+## 正文
 ### 1.去除重复的, 不必要的冗余代码.
 #### 剥离 tableViewDelegate 和 tableViewDataSource 
 tableView 是经常使用的UI控件, tableViewDataSource 和 tableViewDelegate 的代码是几乎每个控制器里面都会出现的东西, 那么如果要构建的 tableView 比较简单, 就可以考虑用通用的 tableViewDelegate 和 tableViewDataSource. 根据我个人习惯, 我一般都会让所有 cell 的 model 继承自一个基础的 model
@@ -311,7 +312,8 @@ _tableView = [[UITableView alloc] init];
 ```
 [viewControllerA.view addSubView:viewControllerB.view]
 ```
-![view-insertion](https://github.com/JVSFlipped/JVSBetterVCDemo/blob/master/view-insertion.png)  
+ 
+![](https://github.com/JVSFlipped/JVSBetterVCDemo/blob/master/view-insertion.png)
 
 UIWindow 作为一个应用程序的根视图（root view），是旋转和初始布局消息等事件产生的来源。在上图中，child view controller 的 view 插入到 root view controller 的视图层级中，被排除在这些事件之外了。View 事件方法诸如 viewWillAppear: 将不会被调用。
 
@@ -364,11 +366,7 @@ JVSTestVC *childVC = self.childViewControllers.firstObject;
 //    [_TESTChildVC didMoveToParentViewController:nil]; 自动调用, 省略
 NSLog(@"还剩%lu个控制器", self.childViewControllers.count); //打印为0
 ```
-### 总结
-总的来说, 坚持要更好地使用和简化 ViewController 只需要让他专注于他该做的事情, 并合理运用他的辅助------childViewControllers, 不要让他去处理不属于他的事物, 即可写出整洁清晰的 ViewController 的代码. 以上内容部分参考了 Objc 中国的期刊内容, 其中掺杂了很多我个人的理解和一些处理思路.    
+## 总结
+总的来说, 坚持要更好地使用和简化 ViewController 只需要让他专注于他该做的事情, 并合理运用他的辅助------childViewControllers, 不要让他去处理不属于他的事物, 即可写出整洁清晰的 ViewController 的代码. 以上内容部分参考了 Objc 中国的期刊内容, 其中掺杂了很多我个人的理解和一些处理思路. 并给出了新的 demo文件.   
 完整的示例代码:<https://github.com/JVSFlipped/JVSBetterVCDemo.git>
-
-
-
-
 
